@@ -61,6 +61,12 @@ def post():
     return render_template('post.html')
 
 
+@app.route('/week1')
+def week1():
+    # 루트 경로에 대한 처리
+    return render_template('week1.html')
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     return "페이지를 찾을 수 없습니다. 요청한 URL이 잘못되었을 수 있습니다.", 404
