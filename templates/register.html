@@ -299,12 +299,13 @@
       document
         .getElementById("loginLink")
         .addEventListener("click", function () {
-          window.location.href = "/login";
+          window.location.href = "/signin";
         });
       function register() {
         let name = $("#username").val();
         let password = $("#password").val();
         let id = $("#email").val();
+        alert(name + password + id);
         let dataToSend = {
           name: name,
           password: password,
@@ -321,7 +322,7 @@
             if (response["status"] == "success") {
               alert("회원가입 성공!");
               // 3. 성공 시 페이지 새로고침하기
-              window.location.reload();
+              window.location.href = "/signin";
             } else {
               console.log("서버오류");
               alert("서버 오류!");
@@ -331,8 +332,5 @@
       }
     </script>
     <!-- footer -->
-    <script>
-      loadHTML("../public/footer/index.html");
-    </script>
   </body>
 </html>
