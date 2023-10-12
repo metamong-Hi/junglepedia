@@ -1,0 +1,13 @@
+/* .notification is-primary {
+  padding-bottom: 200px;
+} */
+.button {
+  font-weight: bold;
+  color: white;
+  background-color: black;
+  margin-top: 60px;
+}
+.h1 {
+  font-size: 45px;
+  justify-content: center;
+}

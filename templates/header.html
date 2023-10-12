@@ -1,0 +1,76 @@
+<!-- header -->
+<style>
+  .header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .navbar-container-header{
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 50px;
+    margin-right: 10px;
+  }
+  .home-container-header {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
+  .home-title {
+    font-size: 50px;
+    font-family: "Fredoka", sans-serif;
+    font-weight: 700;
+    /* letter-spacing: -0.015em; */
+    word-break: normal;
+    color: #0ca789;
+  }
+  .navbar-item-header {
+    padding: 10px;
+  }
+  .home-title-container {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+  #navbar-header {
+    width: 450px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 18px;
+  }
+  /* .navbar-item-header a:hover {
+    color: #0ca789;
+    cursor: pointer;
+  } */
+</style>
+<header class="header">
+  <!-- title -->
+  <div class="home-title-container">
+    <a id="home" class="home-title">brainforest</a></li>
+  </div>
+  <!-- nav -->
+  <nav class="navbar-container-header">
+    <ul id="navbar-header">
+      <!-- <li class="navbar-item"><a href="#">글쓰기</a></li>
+              <li class="navbar-item"><a href="#">마이페이지</a></li> -->
+      <!-- <li class="navbar-item-header"><a id="home">정글피디아</a></li> -->
+      <li class="navbar-item-header"><a id="post">글쓰기</a></li>
+      <li class="navbar-item-header"><a id="mypage">마이페이지</a></li>
+      <li class="navbar-item-header"><a id="logout">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+<script>
+  document.getElementById("home").addEventListener("click", function () {
+    window.location.href = "/home";
+  });
+  document.getElementById("logout").addEventListener("click", function () {
+    window.location.href = "/login";
+  });
+  document.getElementById("mypage").addEventListener("click", function () {
+    window.location.href = "/mypage";
+  });
+  document.getElementById("post").addEventListener("click", function () {
+    window.location.href = "/post";
+  });
+</script>

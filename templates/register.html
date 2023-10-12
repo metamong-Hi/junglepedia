@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brainforest</title>
+    <style type="text/css">
+      .title-container {
+        height: 10rem;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 4px -4px lightgray;
+      }
+
+      .title-text {
+        font-size: 35px;
+        color: #0ca789;
+        font-weight: bold;
+      }
+
+      .register-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 80px;
+        margin-bottom: 120px;
+      }
+
+      .box {
+        width: 45rem;
+        padding: 50px 150px 45px 150px;
+      }
+
+      .label-text {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      .control {
+        margin: 10px 0px 30px 0px;
+      }
+
+      /* 이메일 인증 */
+      .emailVerify {
+        display: flex;
+        font-size: 14.5px;
+      }
+
+      #send__email {
+        font-size: 14px;
+      }
+
+      .email__box {
+        margin: 10px 0px 0px 10px;
+      }
+
+      .pw-text {
+        font-size: 13px;
+      }
+
+      .input-button {
+        display: flex;
+      }
+      .control2 {
+        margin: 10px 0px 0px 0px;
+      }
+      #findAddressBtn {
+        margin: 10px 0px 0px 10px;
+        font-size: 14px;
+      }
+
+      .term {
+        display: flex;
+        margin: 50px 0 3px 0;
+      }
+      .term-text {
+        margin-left: 10px;
+      }
+
+      .manager {
+        display: flex;
+        margin: 0px 0 3px 0;
+      }
+      .manager-text {
+        margin-left: 10px;
+      }
+
+      #submitButton {
+        background-color: black;
+        color: white;
+        font-weight: bold;
+      }
+      #submitButton:hover {
+        color: #0ca789;
+      }
+
+      .title-container {
+        height: 10rem;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 4px -4px lightgray;
+      }
+
+      .title-text {
+        font-size: 35px;
+        color: #0ca789;
+        font-weight: bold;
+      }
+
+      .register-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 80px;
+        margin-bottom: 120px;
+      }
+
+      .box {
+        width: 45rem;
+        padding: 50px 150px 45px 150px;
+      }
+
+      .label-text {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+      }
+
+      .control {
+        margin: 10px 0px 30px 0px;
+      }
+
+      /* 이메일 인증 */
+      .emailVerify {
+        display: flex;
+        font-size: 14.5px;
+      }
+
+      #send__email {
+        font-size: 14px;
+      }
+
+      .email__box {
+        margin: 10px 0px 0px 10px;
+      }
+
+      .pw-text {
+        font-size: 13px;
+      }
+
+      .input-button {
+        display: flex;
+      }
+      .control2 {
+        margin: 10px 0px 0px 0px;
+      }
+      #findAddressBtn {
+        margin: 10px 0px 0px 10px;
+        font-size: 14px;
+      }
+
+      .term {
+        display: flex;
+        margin: 50px 0 3px 0;
+      }
+      .term-text {
+        margin-left: 10px;
+      }
+
+      .manager {
+        display: flex;
+        margin: 0px 0 3px 0;
+      }
+      .manager-text {
+        margin-left: 10px;
+      }
+
+      #submitButton {
+        background-color: black;
+        color: white;
+        font-weight: bold;
+      }
+      #submitButton:hover {
+        color: #0ca789;
+      }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+    <!-- public css, js -->
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/header.css" />
+
+    <link rel="stylesheet" href="css/register.css" />
+    <!-- <script src="register.js" type="module" defer></script> -->
+  </head>
+  <body>
+    <!-- <script>
+      //   if (localStorage.getItem("loggedIn") === "true") {
+      loadHTML("header.html");
+      // //   } else {
+      //     loadHTML("../header.html");
+      //   }
+    </script> -->
+
+    {% include 'header.html' %}
+
+    <!-- main -->
+    <main class="main">
+      <div class="title-container">
+        <h1 class="title-text">Register</h1>
+      </div>
+      <!-- register -->
+      <div class="register-container">
+        <div class="box" id="registerForm">
+          <div class="field">
+            <label class="label-text" for="fullNameInput">이름</label>
+            <div class="control">
+              <input
+                class="input"
+                id="username"
+                type="text"
+                placeholder="김정글"
+                autocomplete="on"
+              />
+            </div>
+          </div>
+          <div class="field">
+            <label class="label-text" for="email">이메일</label>
+            <div class="emailVerify">
+              <div class="control">
+                <input
+                  class="input"
+                  id="email"
+                  type="email"
+                  placeholder="jungle@krafton.com"
+                  autocomplete="on"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label-text" for="password">비밀번호</label>
+              <p class="pw-text">
+                영문, 숫자, 특수문자를 혼합하여 4자리 이상 입력해주세요.
+              </p>
+              <div class="control">
+                <input
+                  class="input"
+                  id="password"
+                  type="password"
+                  placeholder="****"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div class="field mb-5">
+              <label class="label-text" for="passwordConfirmInput"
+                >비밀번호 확인</label
+              >
+              <div class="control">
+                <input
+                  class="input"
+                  id="passwordConfirmInput"
+                  type="password"
+                  placeholder="****"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div class="term">
+              <input type="checkbox" id="term-check" />
+              <div class="term-text">개인정보 수집 및 이용에 동의합니다.</div>
+            </div>
+
+            <div class="submitButtonContainer">
+              <button
+                onclick="register()"
+                class="button is-fullwidth"
+                id="submitButton"
+              >
+                회원가입하기
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script>
+      document
+        .getElementById("loginLink")
+        .addEventListener("click", function () {
+          window.location.href = "/login";
+        });
+      function register() {
+        let name = $("#username").val();
+        let password = $("#password").val();
+        let id = $("#email").val();
+        let dataToSend = {
+          name: name,
+          password: password,
+          id: id,
+        };
+        $.ajax({
+          type: "POST",
+          url: "/api/v1/signup",
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          data: JSON.stringify(dataToSend),
+          success: function (response) {
+            // 성공하면
+            if (response["status"] == "success") {
+              alert("회원가입 성공!");
+              // 3. 성공 시 페이지 새로고침하기
+              window.location.reload();
+            } else {
+              console.log("서버오류");
+              alert("서버 오류!");
+            }
+          },
+        });
+      }
+    </script>
+    <!-- footer -->
+    <script>
+      loadHTML("../public/footer/index.html");
+    </script>
+  </body>
+</html>

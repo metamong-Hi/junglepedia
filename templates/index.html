@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Brainforest</title>
+    <style></style>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+    />
+
+    <!-- <script src="..loadHTML.js"></script> -->
+    <!-- <script src="register.js" type="module" defer></script> -->
+  </head>
+  <body>
+    <!-- header -->
+
+    <!-- main -->
+    <main class="main">
+      <img
+        src="{{ url_for('static', filename='images/tree.PNG') }}"
+        alt="이미지 설명"
+      />
+    </main>
+    <main class="main">여기는 메인페이지</main>
+    <div style="margin-left: 50px">
+      <button class="button" id="login">로그인</button>
+      <button class="button" id="register">회원가입</button>
+    </div>
+    <script>
+      document.getElementById("login").addEventListener("click", function () {
+        window.location.href = "/login";
+      });
+      document
+        .getElementById("register")
+        .addEventListener("click", function () {
+          window.location.href = "/register";
+        });
+    </script>
+    <!-- footer -->
+  </body>
+</html>
