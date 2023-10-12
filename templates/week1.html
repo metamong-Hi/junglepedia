@@ -83,6 +83,7 @@
       });
 
       function showMyPost() {
+        $('.login-container').empty();
         let category="자료구조";
         $.ajax({
           type: "GET",
@@ -91,7 +92,30 @@
           dataType: "json",
           success: function (response) {
             if (response.status === "success") {
-              alert("목록 받아오기 성공!");
+  
+              // Call a function to process and display the received data
+              let posts = response.posts;
+              addMovieCards(posts);
+            } else {
+              alert("실패!");
+            }
+          },
+          error: function (xhr, status, error) {
+            console.log("Error:", error);
+          },
+        });
+      }
+      function showPopularPost() {
+        $('.login-container').empty();
+        let category="자료구조";
+        $.ajax({
+          type: "GET",
+          url:  `/api/v1/view/like/${category}`,
+          contentType: "application/json",
+          dataType: "json",
+          success: function (response) {
+            if (response.status === "success") {
+    
               // Call a function to process and display the received data
               let posts = response.posts;
               addMovieCards(posts);
@@ -106,7 +130,7 @@
       }
 
       function addMovieCards(posts) {
-        alert(posts.length);
+    
         for (let i = 0; i < posts.length; i++) {
           let post = posts[i];
           // Extract information from the post and create HTML elements as needed
@@ -114,6 +138,7 @@
           let title = post.title;
           let content = post.content;
           let category = post.category;
+          let link=post.link;
           let like = post.like;
           // Create and append HTML elements to display the post information
           let cardContentHtml = `
@@ -129,6 +154,7 @@
               </header>
           <div class="card-content">
                 <div class="content">${category}</div>
+                <div class="content">${link}</div>
                 <div class="content">${content}</div>
                 <span class="icon"><button onclick="hello('${id}')" class="fas fa-thumbs-up"></button></span><span class="movie-likes">${like}</span>
           </div>
@@ -185,6 +211,8 @@
             자료구조
           </h1>
         </div>
+        <button onclick="showMyPost()">최신순</button>
+        <button onclick="showPopularPost()">인기순</button>
         <div class="login-container"></div>
         
     </main>
