@@ -20,8 +20,8 @@
 
       .week1Button {
         position: absolute; /* 절대 위치로 설정 */
-        top: 50%; /* 수직 위치를 화면 상단에서 50%로 설정 */
-        left: 50%; /* 수평 위치를 화면 왼쪽에서 50%로 설정 */
+        top: 55%; /* 수직 위치를 화면 상단에서 50%로 설정 */
+        left: 35%; /* 수평 위치를 화면 왼쪽에서 50%로 설정 */
         transform: translate(
           -50%,
           -50%
@@ -36,8 +36,8 @@
       }
       .week2Button {
         position: absolute; /* 절대 위치로 설정 */
-        top: 55%; /* 수직 위치를 화면 상단에서 50%로 설정 */
-        left: 55%; /* 수평 위치를 화면 왼쪽에서 50%로 설정 */
+        top: 50%; /* 수직 위치를 화면 상단에서 50%로 설정 */
+        left: 40%; /* 수평 위치를 화면 왼쪽에서 50%로 설정 */
         transform: translate(
           -50%,
           -50%
@@ -54,6 +54,86 @@
         position: absolute; /* 절대 위치로 설정 */
         top: 55%; /* 수직 위치를 화면 상단에서 50%로 설정 */
         left: 45%; /* 수평 위치를 화면 왼쪽에서 50%로 설정 */
+        transform: translate(
+          -50%,
+          -50%
+        ); /* 버튼을 수평 및 수직으로 중앙에 배치 */
+        max-width: 100px;
+        max-height: 100px; /* 원하는 크기로 버튼을 설정 */
+        color: white; /* 버튼 텍스트 색 설정 */
+        border: none;
+        background: none; /* 테두리 제거 */
+        border-radius: 50px; /* 버튼을 둥글게 만듭니다 */
+        cursor: pointer;
+      }
+      .week4Button {
+        position: absolute; /* 절대 위치로 설정 */
+        top: 50%; /* 수직 위치를 화면 상단에서 50%로 설정 */
+        left: 50%; /* 수평 위치를 화면 왼쪽에서 50%로 설정 */
+        transform: translate(
+          -50%,
+          -50%
+        ); /* 버튼을 수평 및 수직으로 중앙에 배치 */
+        max-width: 100px;
+        max-height: 100px; /* 원하는 크기로 버튼을 설정 */
+        color: white; /* 버튼 텍스트 색 설정 */
+        border: none;
+        background: none; /* 테두리 제거 */
+        border-radius: 50px; /* 버튼을 둥글게 만듭니다 */
+        cursor: pointer;
+      }
+      .week5Button {
+        position: absolute; /* 절대 위치로 설정 */
+        top: 55%; /* 수직 위치를 화면 상단에서 50%로 설정 */
+        left: 55%; /* 수평 위치를 화면 왼쪽에서 50%로 설정 */
+        transform: translate(
+          -50%,
+          -50%
+        ); /* 버튼을 수평 및 수직으로 중앙에 배치 */
+        max-width: 100px;
+        max-height: 100px; /* 원하는 크기로 버튼을 설정 */
+        color: white; /* 버튼 텍스트 색 설정 */
+        border: none;
+        background: none; /* 테두리 제거 */
+        border-radius: 50px; /* 버튼을 둥글게 만듭니다 */
+        cursor: pointer;
+      }
+      .week6Button {
+        position: absolute; /* 절대 위치로 설정 */
+        top: 50%; /* 수직 위치를 화면 상단에서 50%로 설정 */
+        left: 60%; /* 수평 위치를 화면 왼쪽에서 50%로 설정 */
+        transform: translate(
+          -50%,
+          -50%
+        ); /* 버튼을 수평 및 수직으로 중앙에 배치 */
+        max-width: 100px;
+        max-height: 100px; /* 원하는 크기로 버튼을 설정 */
+        color: white; /* 버튼 텍스트 색 설정 */
+        border: none;
+        background: none; /* 테두리 제거 */
+        border-radius: 50px; /* 버튼을 둥글게 만듭니다 */
+        cursor: pointer;
+      }
+      .week7Button {
+        position: absolute; /* 절대 위치로 설정 */
+        top: 55%; /* 수직 위치를 화면 상단에서 50%로 설정 */
+        left: 65%; /* 수평 위치를 화면 왼쪽에서 50%로 설정 */
+        transform: translate(
+          -50%,
+          -50%
+        ); /* 버튼을 수평 및 수직으로 중앙에 배치 */
+        max-width: 100px;
+        max-height: 100px; /* 원하는 크기로 버튼을 설정 */
+        color: white; /* 버튼 텍스트 색 설정 */
+        border: none;
+        background: none; /* 테두리 제거 */
+        border-radius: 50px; /* 버튼을 둥글게 만듭니다 */
+        cursor: pointer;
+      }
+      .week8Button {
+        position: absolute; /* 절대 위치로 설정 */
+        top: 50%; /* 수직 위치를 화면 상단에서 50%로 설정 */
+        left: 70%; /* 수평 위치를 화면 왼쪽에서 50%로 설정 */
         transform: translate(
           -50%,
           -50%
@@ -98,7 +178,27 @@
       </button>
 
       <button type="button" id="week3Button" class="week3Button">
-        <h1>나만무</h1>
+        <h1>RB트리</h1>
+        <img src="{{ url_for('static', filename='images/apple.png') }}" />
+      </button>
+      <button type="button" id="week4Button" class="week4Button">
+        <h1>말록랩</h1>
+        <img src="{{ url_for('static', filename='images/apple.png') }}" />
+      </button>
+      <button type="button" id="week5Button" class="week5Button">
+        <h1>웹서버</h1>
+        <img src="{{ url_for('static', filename='images/apple.png') }}" />
+      </button>
+      <button type="button" id="week6Button" class="week6Button">
+        <h1>컴퓨터구조</h1>
+        <img src="{{ url_for('static', filename='images/apple.png') }}" />
+      </button>
+      <button type="button" id="week7Button" class="week7Button">
+        <h1>C언어</h1>
+        <img src="{{ url_for('static', filename='images/apple.png') }}" />
+      </button>
+      <button type="button" id="week8Button" class="week8Button">
+        <h1>운영체제</h1>
         <img src="{{ url_for('static', filename='images/apple.png') }}" />
       </button>
     </main>
@@ -117,6 +217,31 @@
         .getElementById("week3Button")
         .addEventListener("click", function () {
           window.location.href = "/week3";
+        });
+      document
+        .getElementById("week4Button")
+        .addEventListener("click", function () {
+          window.location.href = "/week4";
+        });
+      document
+        .getElementById("week5Button")
+        .addEventListener("click", function () {
+          window.location.href = "/week5";
+        });
+      document
+        .getElementById("week6Button")
+        .addEventListener("click", function () {
+          window.location.href = "/week6";
+        });
+      document
+        .getElementById("week7Button")
+        .addEventListener("click", function () {
+          window.location.href = "/week7";
+        });
+      document
+        .getElementById("week8Button")
+        .addEventListener("click", function () {
+          window.location.href = "/week8";
         });
     </script>
   </body>
