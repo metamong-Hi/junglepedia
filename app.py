@@ -96,15 +96,57 @@ def post():
     return render_template('post_real.html')
 
 
-@app.route('/real_update')
-def real_update():
-    return render_template('update.html')
+@app.route('/real_update/<int:id>')
+def real_update(id):
+    return render_template('real_update.html', id=id)
 
 
 @app.route('/week1')
 def week1():
     # 루트 경로에 대한 처리
     return render_template('week1.html')
+
+
+@app.route('/week2')
+def week2():
+    # 루트 경로에 대한 처리
+    return render_template('week2.html')
+
+
+@app.route('/week3')
+def week3():
+    # 루트 경로에 대한 처리
+    return render_template('week3.html')
+
+
+@app.route('/week4')
+def week4():
+    # 루트 경로에 대한 처리
+    return render_template('week4.html')
+
+
+@app.route('/week5')
+def week5():
+    # 루트 경로에 대한 처리
+    return render_template('week5.html')
+
+
+@app.route('/week6')
+def week6():
+    # 루트 경로에 대한 처리
+    return render_template('week6.html')
+
+
+@app.route('/week7')
+def week7():
+    # 루트 경로에 대한 처리
+    return render_template('week7.html')
+
+
+@app.route('/week8')
+def week8():
+    # 루트 경로에 대한 처리
+    return render_template('week8.html')
 
 
 @app.errorhandler(404)

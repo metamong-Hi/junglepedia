@@ -37,11 +37,19 @@
   <body>
     <!-- 헤더 삽입 -->
     <script>
-      if (localStorage.getItem("loggedIn") === "true") {
-        loadHTML("../public/header/header.html");
-      } else {
-        loadHTML("../public/header/header.html");
-      }
+         function getQueryParam(name) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(name);
+        }
+
+        // Get the 'id' query parameter from the URL
+        const postId = getQueryParam('id');
+
+        // Now you can use the 'postId' on this page
+        if (postId) {
+            // Do something with postId
+            alert(postId);
+        }
     </script>
 
     <main class="main">

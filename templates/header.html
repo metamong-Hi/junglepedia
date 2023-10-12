@@ -46,7 +46,7 @@
 <header class="header">
   <!-- title -->
   <div class="home-title-container">
-    <a id="home" class="home-title">brainforest</a></li>
+    <a id="home" class="home-title">JunglePedia</a></li>
   </div>
   <!-- nav -->
   <nav class="navbar-container-header">
@@ -62,12 +62,31 @@
 </header>
 <script>
   document.getElementById("home").addEventListener("click", function () {
-    window.location.href = "/";
+    window.location.href = "/home";
   });
   document.getElementById("mypage").addEventListener("click", function () {
     window.location.href = "/mypage";
   });
   document.getElementById("post").addEventListener("click", function () {
     window.location.href = "/post_real";
+  });
+  document.getElementById("logout").addEventListener("click", function () {
+    $.ajax({
+          type: "POST",
+          url: "/api/v1/logout",
+          contentType: "application/json; charset=utf-8",
+          dataType: "json",
+          success: function (response) {
+            // 성공하면
+            if (response["status"] == "success") {
+              alert("로그아웃 성공!");
+              // 3. 성공 시 페이지 새로고침하기
+              window.location.href = "/signin";
+            } else {
+              console.log("서버오류");
+              alert("서버 오류!");
+            }
+          },
+        });
   });
 </script>

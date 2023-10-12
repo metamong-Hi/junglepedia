@@ -99,7 +99,7 @@
 
       function showMyPost() {
         $('.login-container').empty();
-        let category="자료구조";
+        let category="RB트리";
         $.ajax({
           type: "GET",
           url:  `/api/v1/view/recent/${category}`,
@@ -122,7 +122,7 @@
       }
       function showPopularPost() {
         $('.login-container').empty();
-        let category="자료구조";
+        let category="RB트리";
         $.ajax({
           type: "GET",
           url:  `/api/v1/view/like/${category}`,
@@ -171,7 +171,7 @@
                 <div class="content">${category}</div>
                 <div class="content">${link}</div>
                 <div class="content">${content}</div>
-                <span class="icon"><button onclick="hello('${id}')" class="fas fa-thumbs-up"></button></span><span >       ${like}</span>
+                <span class="icon"><button onclick="hello('${id}')" class="fas fa-thumbs-up"></button></span><span >             ${like}</span>
           </div>
           </div>
           </div>
@@ -223,7 +223,7 @@
       <div>
         <div class="title-container">
           <h1 class="title-text" style="color: black; font: size 45px">
-            자료구조
+           RB트리
           </h1>
         </div>
         <div class="buttonWrapper">

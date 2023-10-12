@@ -18,6 +18,7 @@
       .card {
         width: 1000px;
       }
+      
       .login-container {
         display: flex;
         align-items: center;
@@ -27,6 +28,19 @@
         flex-direction: column;
         width: 100%;
       }
+      .delete-button {
+    background-color: #dc3545; /* Red background color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px; /* Adjust padding as needed */
+    cursor: pointer;
+    font-size: 14px; /* Adjust font size as needed */
+}
+
+.delete-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
       .title-container {
         height: 10rem;
         background-color: white;
@@ -92,7 +106,7 @@
           dataType: "json",
           success: function (response) {
             if (response.status === "success") {
-              alert("목록 받아오기 성공!");
+
               // Call a function to process and display the received data
               let posts = response.posts;
               addMovieCards(posts);
@@ -112,7 +126,7 @@
       // }
 
       function addMovieCards(posts) {
-        alert(posts.length);
+
         for (let i = 0; i < posts.length; i++) {
           let post = posts[i];
           // Extract information from the post and create HTML elements as needed
@@ -120,6 +134,7 @@
           let title = post.title;
           let content = post.content;
           let category = post.category;
+          let link=post.link;
           let like = post.like;
           // Create and append HTML elements to display the post information
           let cardContentHtml = `
@@ -135,8 +150,9 @@
               </header>
           <div class="card-content">
                 <div class="content">${category}</div>
+                <div class="content">${link}</div>
                 <div class="content">${content}</div>
-                <a id="putPost">수정</a> <a id="deletePost">삭제</a>
+                <button onclick="deletePost('${id}')" class="delete-button">삭제</a>
           </div>
           </div>
           </div>
@@ -149,13 +165,10 @@
       }
     </script>
     <script>
-      document.getElementById("putPost").addEventListener("click", function () {
-        window.location.href = "/real_update";
-      });
-      document.getElementById("deletePost").addEventListener("click", function () {
+      function deletePost(id){
         $.ajax({
           type: "DELETE",
-          url: "/api/v1/post/`${id}`",
+          url: `/api/v1/post/${id}`,
           headers: {
             Authorization: "Bearer " + localStorage.getItem("jwt_token"),
           },
@@ -164,6 +177,7 @@
           success: function (response) {
             if (response.status === "success") {
               alert("삭제성공!");
+              window.location.reload();
             } else {
               alert("실패!");
             }
@@ -172,7 +186,10 @@
             console.log("Error:", error);
           },
         });
-      });
+      }
+      function putPost(id){
+        window.location.href = `/real_update?id=${id}`;
+      } 
     </script>
   </head>
   <body>
