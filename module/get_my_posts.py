@@ -40,10 +40,10 @@ def get_my_posts(current_user):
     posts = list(posts_collection.find({"userId": current_user}))
 
     if not posts:
-        return jsonify({"message": "게시물이 없습니다."}), 404
+        return jsonify({'status': 'fail', 'message': '글없다'}), 500
 
     # Convert ObjectId to string for JSON serialization
     for post in posts:
         post["_id"] = str(post["_id"])
 
-    return jsonify(posts), 200
+    return jsonify({'posts': posts, 'status': 'success', 'message': '불러오기성공'}), 200

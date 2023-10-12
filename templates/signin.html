@@ -83,9 +83,9 @@
       href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
     <!-- public css, js -->
-    <link rel="stylesheet" href="../header.css" />
-    <link rel="stylesheet" href="../footer.css" />
-    <link rel="stylesheet" href="login.css" />
+    <link rel="stylesheet" href="./css/header.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
+    <link rel="stylesheet" href="./css/login.css" />
   </head>
   <body>
     <!-- header -->
@@ -146,13 +146,15 @@
           window.location.href = "/register";
         });
       function login() {
+        event.preventDefault();
         let password = $("#password").val();
         let id = $("#email").val();
-        alert(password + id);
+
         let dataToSend = {
           id: id,
           password: password,
         };
+
         $.ajax({
           type: "POST",
           url: "/api/v1/login",
@@ -160,14 +162,17 @@
           dataType: "json",
           data: JSON.stringify(dataToSend),
           success: function (response) {
-            // 성공하면
+            console.log(response);
             if (response["status"] == "success") {
               alert("로그인 성공!");
+              localStorage.setItem("jwt_token", response.token); // 토큰을 로컬 스토리지에 저장합니다.
               window.location.href = "/home";
             } else {
-              alert("서버 오류!");
-              window.location.href = "/register";
+              alert(response["msg"]); // 실패 메시지를 사용자에게 표시합니다.
             }
+          },
+          error: function (xhr, status, error) {
+            alert("서버 오류!");
           },
         });
       }

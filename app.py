@@ -90,10 +90,15 @@ def mypage():
     return render_template('mypage.html')
 
 
-@app.route('/post')
+@app.route('/post_real')
 def post():
     # 루트 경로에 대한 처리
-    return render_template('post.html')
+    return render_template('post_real.html')
+
+
+@app.route('/real_update')
+def real_update():
+    return render_template('update.html')
 
 
 @app.route('/week1')

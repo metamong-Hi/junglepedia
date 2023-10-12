@@ -15,9 +15,9 @@ def view_recent_posts(category):
         {"category": category}).sort("date", -1).limit(30))
 
     if not posts:
-        return jsonify({"message": "해당 카테고리의 게시물이 없습니다."}), 404
+        return jsonify({'status': 'fail', 'message': '글없다'}), 500
 
     for post in posts:
         post["_id"] = str(post["_id"])
 
-    return jsonify(posts), 200
+    return jsonify({'posts': posts, 'status': 'success', 'message': '불러오기성공'}), 200

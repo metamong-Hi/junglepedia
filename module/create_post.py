@@ -13,28 +13,28 @@ create_post_bp = Blueprint('create_post', __name__)
 SECRET_KEY = 'your_secret_key_for_jwt'
 
 
-# def jwt_required(f):
-#     @wraps(f)
-#     def decorated(*args, **kwargs):
-#         token = None
-#         if 'Authorization' in request.headers:
-#             token = request.headers['Authorization'].replace("Bearer ", "")
+def jwt_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = None
+        if 'Authorization' in request.headers:
+            token = request.headers['Authorization'].replace("Bearer ", "")
 
-#         if not token:
-#             return jsonify({"message": "토큰이 없습니다."}), 401
+        if not token:
+            return jsonify({"message": "토큰이 없습니다."}), 401
 
-#         try:
-#             data = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
-#             current_user = data['id']
-#         except:
-#             return jsonify({"message": "토큰이 유효하지 않습니다."}), 401
-#         return f(current_user, *args, **kwargs)
+        try:
+            data = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+            current_user = data['id']
+        except:
+            return jsonify({"message": "토큰이 유효하지 않습니다."}), 401
+        return f(current_user, *args, **kwargs)
 
-#     return decorated
+    return decorated
 
 
 @create_post_bp.route('/api/v1/post', methods=['POST'])
-# @jwt_required
+@jwt_required
 def create_post(current_user):
     post_data = request.json
     post_data['like'] = 0
@@ -53,10 +53,10 @@ def create_post(current_user):
         # '_id'의 필드값이 'user_id'와 일치하는 요소를 찾음 -> 'posts' 필드에 'result.insterted_id'값 push
 
         users_collection.update_one(
-            {"id": "metamong3201@gmail.com"},
+            {"id": current_user},
             {"$push": {"posts": result.inserted_id}}
         )
         print("(게시글작성)", post_data)
-        return jsonify({"postId": str(result.inserted_id)}), 201
+        return jsonify({'status': 'success',  'message': '글작성 성공', }), 200
     else:
-        return jsonify({"message": "게시물 생성에 실패하였습니다."}), 500
+        return jsonify({'status': 'fail', 'message': '글작성 실패', }), 500

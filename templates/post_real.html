@@ -247,6 +247,10 @@ button {
 }
 
     </style>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -293,8 +297,15 @@ button {
             <div class="field">
             <div id="category">카테고리</div>
             <select id="select">
-              <option>알고리즘</option>
               <option>자료구조</option>
+              <option>알고리즘</option>
+              <option>RB트리</option>
+              <option>말록랩</option>
+              <option>웹서버</option>
+              <option>
+                컴퓨터구조</option>
+              <option> C언어</option>
+              <option>운영체제</option>
             </select>
           </div>
 
@@ -340,37 +351,43 @@ button {
 
       <!-- buttonWrapper -->
       <div class="buttonWrapper">
-        <button onclick="posting()">글 등록</button>
+        <button onclick="posting(event)">글 등록</button>
       </div>
         
 
-        </div>
+      </div>
 
     </main>
     <script>
-        function posting() {
+        function posting(event) {
+          event.preventDefault();
           let title = $("#title").val();
           let link = $("#link").val();
           let content = $("#content").val();
-          let category = $("#category").val();
-          alert(title + link + reason+category);
-        let dataToSend = {
-            title:title,
-            link:link,
-            content:content,
-            category:category,
-        };
+          let category = $("#select").val();
+          
+          let currentDate = new Date();
+          let formattedDate = currentDate.getFullYear() + '-' + (currentDate.getMonth()+1) + '-' + currentDate.getDate() + ' ' + currentDate.getHours() + ':' + currentDate.getMinutes() + ':' + currentDate.getSeconds();
+
+          let dataToSend = {
+            title: title,
+            link: link,
+            content: content,
+            category: category,
+            date: formattedDate
+          };
+
           $.ajax({
             type: "POST",
-          url: "/api/v1/post",
-          headers: {
-                'Authorization': 'Bearer YOUR_JWT_TOKEN'
+            url: "/api/v1/post",
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("jwt_token")
             },
-          contentType: "application/json;",
-          dataType: "json",
-          data: JSON.stringify(dataToSend),
+            contentType: "application/json;",
+            dataType: "json",
+            data: JSON.stringify(dataToSend),
+            // 성공하면
             success: function (response) {
-              // 성공하면
               if (response["status"] == "success") {
                 alert("포스팅 성공!");
                 // 3. 성공 시 페이지 새로고침하기

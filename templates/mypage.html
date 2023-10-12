@@ -9,10 +9,14 @@
         margin: 0;
         padding: 0;
       }
+
       main {
         height: auto;
         min-height: 100%;
         margin-bottom: 100px;
+      }
+      .card {
+        width: 1000px;
       }
       .login-container {
         display: flex;
@@ -20,6 +24,8 @@
         justify-content: center;
         margin-top: 80px;
         margin-bottom: 30px;
+        flex-direction: column;
+        width: 100%;
       }
       .title-container {
         height: 10rem;
@@ -42,6 +48,7 @@
       integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
       crossorigin="anonymous"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
       integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -69,18 +76,106 @@
     <link rel="stylesheet" href="../css/popup.css" />
     <link rel="stylesheet" href="../css/header.css" />
     <link rel="stylesheet" href="../css/footer.css" />
-    <script src="./home.js" type="module"></script>
-    <script src="../public/loadHTML.js"></script>
+    <script>
+      $(document).ready(function () {
+        showMyPost();
+      });
+
+      function showMyPost() {
+        $.ajax({
+          type: "GET",
+          url: "/api/v1/mypost",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("jwt_token"),
+          },
+          contentType: "application/json",
+          dataType: "json",
+          success: function (response) {
+            if (response.status === "success") {
+              alert("목록 받아오기 성공!");
+              // Call a function to process and display the received data
+              let posts = response.posts;
+              addMovieCards(posts);
+            } else {
+              alert("실패!");
+            }
+          },
+          error: function (xhr, status, error) {
+            console.log("Error:", error);
+          },
+        });
+      }
+
+      // function processReceivedData(posts) {
+      //   // Assuming you have a function to display the posts, you can call it here
+      //   addMovieCards(posts);
+      // }
+
+      function addMovieCards(posts) {
+        alert(posts.length);
+        for (let i = 0; i < posts.length; i++) {
+          let post = posts[i];
+          // Extract information from the post and create HTML elements as needed
+          let id = post._id;
+          let title = post.title;
+          let content = post.content;
+          let category = post.category;
+          let like = post.like;
+          // Create and append HTML elements to display the post information
+          let cardContentHtml = `
+
+      <div class="card" style="margin-bottom: 20px;">
+        <header class="card-header">
+          <p class="card-header-title">${title}</p>
+          <button class="card-header-icon" aria-label="more options">
+                  <span class="icon">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </header>
+          <div class="card-content">
+                <div class="content">${category}</div>
+                <div class="content">${content}</div>
+                <a id="putPost">수정</a> <a id="deletePost">삭제</a>
+          </div>
+          </div>
+          </div>
+
+    `;
+
+          // Append the card to the login-container
+          $(".login-container").append(cardContentHtml);
+        }
+      }
+    </script>
+    <script>
+      document.getElementById("putPost").addEventListener("click", function () {
+        window.location.href = "/real_update";
+      });
+      document.getElementById("deletePost").addEventListener("click", function () {
+        $.ajax({
+          type: "DELETE",
+          url: "/api/v1/post/`${id}`",
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("jwt_token"),
+          },
+          contentType: "application/json",
+          dataType: "json",
+          success: function (response) {
+            if (response.status === "success") {
+              alert("삭제성공!");
+            } else {
+              alert("실패!");
+            }
+          },
+          error: function (xhr, status, error) {
+            console.log("Error:", error);
+          },
+        });
+      });
+    </script>
   </head>
   <body>
-    <!-- 헤더 삽입 -->
-    <!-- <script>
-      if (localStorage.getItem("loggedIn") === "true") {
-        loadHTML("../header.html");
-      } else {
-        loadHTML("../header.html");
-      }
-    </script> -->
     {% include 'header.html' %}
     <main class="main" style="margin-top: 20px">
       <div>
@@ -89,121 +184,8 @@
             마이페이지
           </h1>
         </div>
-        <div class="login-container">
-          <!-- <div style="margin-left: 20px">
-          <button class="button">최신순</button>
-          <button class="button">좋아요순</button>
-        </div>
-        <br />
-        <br /> -->
-        </div>
-        <div class="container is-fluid">
-          <div class="notification is-primary">
-            <!-- card
-          <div class="card" style="margin-bottom: 20px">
-            <div class="card-content">
-              <p class="title">
-                “There are two hard things in computer science: cache
-                invalidation, naming things, and off-by-one errors.”
-              </p>
-              <p class="subtitle">Jeff Atwood</p>
-            </div>
-            <footer class="card-footer">
-              <p class="card-footer-item">
-                <span>
-                  View on
-                  <a
-                    href="https://twitter.com/codinghorror/status/506010907021828096"
-                    >Twitter</a
-                  >
-                </span>
-              </p>
-              <p class="card-footer-item">
-                <span> Share on <a href="#">Facebook</a> </span>
-              </p>
-            </footer>
-          </div>
-          <div class="card">
-            <div class="card-content">
-              <p class="title">
-                “There are two hard things in computer science: cache
-                invalidation, naming things, and off-by-one errors.”
-              </p>
-              <p class="subtitle">Jeff Atwood</p>
-            </div>
-            <footer class="card-footer">
-              <p class="card-footer-item">
-                <span>
-                  View on
-                  <a
-                    href="https://twitter.com/codinghorror/status/506010907021828096"
-                    >Twitter</a
-                  >
-                </span>
-              </p>
-              <p class="card-footer-item">
-                <span> Share on <a href="#">Facebook</a> </span>
-              </p>
-            </footer>
-          </div> -->
-            <div class="card" style="margin-bottom: 20px">
-              <header class="card-header">
-                <p class="card-header-title">Component</p>
-                <button class="card-header-icon" aria-label="more options">
-                  <span class="icon">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </button>
-              </header>
-              <div class="card-content">
-                <div class="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus nec iaculis mauris.
-                  <a href="#">@bulmaio</a>. <a href="#">#css</a>
-                  <a href="#">#responsive</a>
-                  <br />
-                  <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                </div>
-              </div>
-              <footer class="card-footer">
-                <a href="#" class="card-footer-item">Save</a>
-                <a href="#" class="card-footer-item">Edit</a>
-                <a href="#" class="card-footer-item">Delete</a>
-              </footer>
-            </div>
-            <div class="card">
-              <header class="card-header">
-                <p class="card-header-title">Component</p>
-                <button class="card-header-icon" aria-label="more options">
-                  <span class="icon">
-                    <i class="fas fa-angle-down" aria-hidden="true"></i>
-                  </span>
-                </button>
-              </header>
-              <div class="card-content">
-                <div class="content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Phasellus nec iaculis mauris.
-                  <a href="#">@bulmaio</a>. <a href="#">#css</a>
-                  <a href="#">#responsive</a>
-                  <br />
-                  <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                </div>
-              </div>
-              <footer class="card-footer">
-                <a href="#" class="card-footer-item">Save</a>
-                <a href="#" class="card-footer-item">Edit</a>
-                <a href="#" class="card-footer-item">Delete</a>
-              </footer>
-            </div>
-          </div>
-        </div>
-      </div>
+        <div class="login-container"></div>
+        
     </main>
-
-    <!-- footer 삽입-->
-    <script>
-      loadHTML("../footer.html");
-    </script>
   </body>
 </html>
